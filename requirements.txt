@@ -1,5 +1,5 @@
 waitress
-os
+os==23.2.1
 io
 base64
 pandas
