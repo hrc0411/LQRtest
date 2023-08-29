@@ -1,7 +1,9 @@
 waitress
-os==23.2.1
+xlwings
+dash
 io
 base64
 pandas
 dash
-xlwings
+os
+
