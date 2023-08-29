@@ -1,0 +1,7 @@
+waitress
+os
+io
+base64
+pandas
+dash
+xlwings
