@@ -2,7 +2,6 @@ waitress
 xlwings
 dash
 pandas
-dash
 dash_bootstrap_components
 base64
 io
