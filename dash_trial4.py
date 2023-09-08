@@ -136,7 +136,7 @@ def save_selected_sheet(n_clicks, selected_type, selected_sheet, contents, filen
             workbook = load_workbook(io.BytesIO(decoded), data_only=True)
             # Read the selected sheet
             df = pd.read_excel(workbook, sheet_name=selected_sheet)
-            output_directory = r'C:/temp'
+            output_directory = 'C:/temp'
             file_name = 'output_Delta Assessment.xlsx'
             output_path = os.path.join(output_directory, file_name)
             df.to_excel(output_path,index=False)
