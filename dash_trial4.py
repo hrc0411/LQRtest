@@ -16,7 +16,6 @@ from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
 import xlwings as xw
 from openpyxl import load_workbook
-import win32com.client as win32
 
 UPLOAD_FOLDER = r'C:\temp'
 SAVE_FOLDER = r'C:\temp'
