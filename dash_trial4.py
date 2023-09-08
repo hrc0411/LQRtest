@@ -99,8 +99,8 @@ def parse_excel(contents, filename):
     try:
         # Read Excel file
         workbook = load_workbook(io.BytesIO(decoded), data_only=True)
-        # Read the selected sheet
-        df = pd.read_excel(workbook, sheet_name=selected_sheet)
+        # Get the sheet names
+        sheet_names = workbook.sheetnames
         
         # Return the sheet names as options for the dropdown
         dropdown_options = [{'label': sheet, 'value': sheet} for sheet in sheet_names]
@@ -133,9 +133,9 @@ def save_selected_sheet(n_clicks, selected_type, selected_sheet, contents, filen
         decoded = base64.b64decode(content_string)
         try:
             # Read Excel file
-            xls = pd.ExcelFile(io.BytesIO(decoded))
+            workbook = load_workbook(io.BytesIO(decoded), data_only=True)
             # Read the selected sheet
-            df = pd.read_excel(xls, sheet_name=selected_sheet)
+            df = pd.read_excel(workbook, sheet_name=selected_sheet)
             output_directory = r'C:\temp'
             file_name = 'output_Delta Assessment.xlsx'
             output_path = os.path.join(output_directory, file_name)
