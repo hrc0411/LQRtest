@@ -149,23 +149,23 @@ def save_selected_sheet(n_clicks, selected_type, selected_sheet, contents, filen
             df.to_excel(r"C:\temp\output_Delta Assessment.xlsx",index=False)
             ###################################
             # Open the Excel file with xlwings
-            excel = win32.gencache.EnsureDispatch('Excel.Application')
-            wb = excel.Workbooks.Open(r'C:\temp\LQreferencing.xlsm')
+            xlwings_json_config = {
+                "file_path": r"C:\temp\LQreferencing.xlsm",
+                "macros": ["Clearcontent.ClearContentExamples", "Module1.test"],
+            }
+            wb = xw.Book(json=xlwings_json_config)
             
-            # Run macros
-            wb.Application.Run("Clearcontent.ClearContentExamples")
-            wb.Application.Run("Module1.test")
-            
-            if selected_type == 'IC':
-                dff = pd.read_excel(r'C:\temp\LQreferencing.xlsm', sheet_name='Comparison process(IC)')
-                summary = pd.read_excel(r'C:\temp\LQreferencing.xlsm', sheet_name='summary(IC)')
+            if selected_type == 'IC':    
+                dff = pd.read_excel(r"C:\temp\LQreferencing.xlsm", sheet_name="Comparison process(IC)")
+                summary = pd.read_excel(r"C:\temp\LQreferencing.xlsm", sheet_name="summary(IC)")
             else:
-                dff = pd.read_excel(r'C:\temp\LQreferencing.xlsm', sheet_name='Comparison process(DISCRETE)')
-                summary = pd.read_excel(r'C:\temp\LQreferencing.xlsm', sheet_name='summary(DISCRETE)')
+                dff = pd.read_excel(r"C:\temp\LQreferencing.xlsm", sheet_name="Comparison process(DISCRETE)")
+                summary = pd.read_excel(r"C:\temp\LQreferencing.xlsm", sheet_name="summary(DISCRETE)")
+            
             
             # Close Excel
-            wb.Close(SaveChanges=False)
-            excel.Quit()
+            wb.close()
+            
                 
             #######################dash table formatting######################    
             style_cell_conditional = []
