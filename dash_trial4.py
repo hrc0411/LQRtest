@@ -142,10 +142,11 @@ def save_selected_sheet(n_clicks, selected_type, selected_sheet, contents, filen
             df.columns = df.iloc[0]
             df = df[1:]
             
-            #output_directory = 'C:\temp'
-            #file_name = 'output_Delta Assessment.xlsx'
-            #output_path = os.path.join(output_directory, file_name)
-            df.to_excel(r"C:\temp\output_Delta Assessment.xlsx",index=False)
+            output_directory = 'C:\temp'
+            file_name = 'output_Delta Assessment.xlsx'
+            output_path = os.path.join(output_directory, file_name)
+            print(output_path)
+            df.to_excel(output_path,index=False)
             ###################################
             # Open the Excel file with xlwings
             xlwings_json_config = {
