@@ -15,6 +15,7 @@ from dash import html
 from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
 import xlwings as xw
+from openpyxl import load_workbook
 
 UPLOAD_FOLDER = r'C:\temp'
 SAVE_FOLDER = r'C:\temp'
@@ -97,9 +98,9 @@ def parse_excel(contents, filename):
     decoded = base64.b64decode(content_string)
     try:
         # Read Excel file
-        xls = pd.ExcelFile(io.BytesIO(decoded))
+        workbook = load_workbook(io.BytesIO(decoded), data_only=True)
         # Get the sheet names
-        sheet_names = xls.sheet_names
+        sheet_names = workbook.sheet_names
         
         # Return the sheet names as options for the dropdown
         dropdown_options = [{'label': sheet, 'value': sheet} for sheet in sheet_names]
