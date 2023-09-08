@@ -100,7 +100,7 @@ def parse_excel(contents, filename):
         # Read Excel file
         workbook = load_workbook(io.BytesIO(decoded), data_only=True)
         # Get the sheet names
-        sheet_names = workbook.sheet_names
+        sheet_names = workbook.sheetnames
         
         # Return the sheet names as options for the dropdown
         dropdown_options = [{'label': sheet, 'value': sheet} for sheet in sheet_names]
