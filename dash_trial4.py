@@ -147,11 +147,12 @@ def save_selected_sheet(n_clicks, selected_type, selected_sheet, contents, filen
             #output_path = os.path.join(output_directory, file_name)
             df.to_excel(r"C:\temp\output_Delta Assessment.xlsx",index=False)
             ###################################
-            wb = xw.Book(r"C:\temp\LQreferencing.xlsm")
-            macro0= wb.macro("Clearcontent.ClearContentExamples")
-            macro0()
-            macro1= wb.macro("Module1.test")
-            macro1()
+            # Open the Excel file with xlwings
+            xlwings_json_config = {
+                "file_path": r"C:\temp\LQreferencing.xlsm",
+                "macros": ["Clearcontent.ClearContentExamples", "Module1.test"],
+            }
+            wb = xw.Book(json=xlwings_json_config)
             wb.save()
             if selected_type == 'IC':    
                 dff = pd.read_excel(r"C:\temp\LQreferencing.xlsm", sheet_name="Comparison process(IC)")
