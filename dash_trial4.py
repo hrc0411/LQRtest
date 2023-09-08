@@ -142,10 +142,10 @@ def save_selected_sheet(n_clicks, selected_type, selected_sheet, contents, filen
             df.columns = df.iloc[0]
             df = df[1:]
             
-            output_directory = 'C:\\temp'
-            file_name = 'output_Delta Assessment.xlsx'
-            output_path = os.path.join(output_directory, file_name)
-            df.to_excel(output_path,index=False)
+            #output_directory = 'C:\temp'
+            #file_name = 'output_Delta Assessment.xlsx'
+            #output_path = os.path.join(output_directory, file_name)
+            df.to_excel(r"C:\temp\output_Delta Assessment.xlsx",index=False)
             ###################################
             wb = xw.Book(r"C:\temp\LQreferencing.xlsm")
             macro0= wb.macro("Clearcontent.ClearContentExamples")
