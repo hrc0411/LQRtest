@@ -16,6 +16,7 @@ from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
 import xlwings as xw
 from openpyxl import load_workbook
+import win32com.client as win32
 
 UPLOAD_FOLDER = r'C:\temp'
 SAVE_FOLDER = r'C:\temp'
@@ -148,22 +149,23 @@ def save_selected_sheet(n_clicks, selected_type, selected_sheet, contents, filen
             df.to_excel(r"C:\temp\output_Delta Assessment.xlsx",index=False)
             ###################################
             # Open the Excel file with xlwings
-            xlwings_json_config = {
-                "file_path": r"C:\temp\LQreferencing.xlsm",
-                "macros": ["Clearcontent.ClearContentExamples", "Module1.test"],
-            }
-            wb = xw.Book(json=xlwings_json_config)
-            wb.save()
-            if selected_type == 'IC':    
-                dff = pd.read_excel(r"C:\temp\LQreferencing.xlsm", sheet_name="Comparison process(IC)")
-                summary = pd.read_excel(r"C:\temp\LQreferencing.xlsm", sheet_name="summary(IC)")
+            excel = win32.gencache.EnsureDispatch('Excel.Application')
+            wb = excel.Workbooks.Open(r'C:\temp\LQreferencing.xlsm')
+            
+            # Run macros
+            wb.Application.Run("Clearcontent.ClearContentExamples")
+            wb.Application.Run("Module1.test")
+            
+            if selected_type == 'IC':
+                dff = pd.read_excel(r'C:\temp\LQreferencing.xlsm', sheet_name='Comparison process(IC)')
+                summary = pd.read_excel(r'C:\temp\LQreferencing.xlsm', sheet_name='summary(IC)')
             else:
-                dff = pd.read_excel(r"C:\temp\LQreferencing.xlsm", sheet_name="Comparison process(DISCRETE)")
-                summary = pd.read_excel(r"C:\temp\LQreferencing.xlsm", sheet_name="summary(DISCRETE)")
-            if len(wb.app.books) == 1:
-                wb.app.quit()
-            else:
-                wb.close()
+                dff = pd.read_excel(r'C:\temp\LQreferencing.xlsm', sheet_name='Comparison process(DISCRETE)')
+                summary = pd.read_excel(r'C:\temp\LQreferencing.xlsm', sheet_name='summary(DISCRETE)')
+            
+            # Close Excel
+            wb.Close(SaveChanges=False)
+            excel.Quit()
                 
             #######################dash table formatting######################    
             style_cell_conditional = []
