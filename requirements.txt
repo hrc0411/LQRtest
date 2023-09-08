@@ -5,4 +5,4 @@ pandas
 dash_bootstrap_components
 xlrd
 openpyxl
-pywin32
+
