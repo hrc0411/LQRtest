@@ -136,7 +136,7 @@ def save_selected_sheet(n_clicks, selected_type, selected_sheet, contents, filen
             print("yes")
             # Convert the sheet to a DataFrame
             df = pd.DataFrame(sheet.values)
-            print("yes")
+            df
             # Extract data to generate dff2
             attribute_list= ['Assembly Location',
              'Package name',
