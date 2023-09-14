@@ -392,7 +392,7 @@ def save_selected_sheet(n_clicks, selected_type, selected_sheet, contents, filen
 
 
 if __name__ == '__main__':
-    app.run_server(debug=False, port=3063)
+    app.run_server(debug=True)
 
 
 
