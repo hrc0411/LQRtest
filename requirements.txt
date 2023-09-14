@@ -1,0 +1,10 @@
+waitress
+pandas
+dash
+xlwings
+dash_bootstrap_components
+openpyxl
+xlrd
+re
+math
+dash_ag_grid
