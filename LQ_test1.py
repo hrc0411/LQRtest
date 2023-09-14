@@ -18,8 +18,6 @@ import dash_bootstrap_components as dbc
 import dash_ag_grid as dag
 from openpyxl import load_workbook
 
-UPLOAD_FOLDER = r'C:\temp'
-SAVE_FOLDER = r'C:\temp'
 
 app = dash.Dash(__name__,external_stylesheets=[dbc.themes.BOOTSTRAP])
 
@@ -132,8 +130,10 @@ def save_selected_sheet(n_clicks, selected_type, selected_sheet, contents, filen
         try:
             # Read Excel file
             workbook = load_workbook(io.BytesIO(decoded), data_only=True)
+            print("yes")
             # Read the selected sheet
             df = pd.read_excel(workbook, sheet_name=selected_sheet)
+            print("yes")
             # Extract data to generate dff2
             attribute_list= ['Assembly Location',
              'Package name',
