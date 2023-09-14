@@ -1,8 +1,0 @@
-waitress
-xlwings
-dash
-pandas
-dash_bootstrap_components
-xlrd
-openpyxl
-
