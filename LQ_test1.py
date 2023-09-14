@@ -404,6 +404,5 @@ if __name__ == '__main__':
 
 
 
-os.chdir("C:/Users/HuangRunchen/Documents/dash-app/trial/LQRD")
 
  # In[37]:
