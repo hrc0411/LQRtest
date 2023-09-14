@@ -132,7 +132,10 @@ def save_selected_sheet(n_clicks, selected_type, selected_sheet, contents, filen
             workbook = load_workbook(io.BytesIO(decoded), data_only=True)
             print("yes")
             # Read the selected sheet
-            df = pd.read_excel(workbook, sheet_name=selected_sheet)
+            sheet = workbook[selected_sheet]
+            print("yes")
+            # Convert the sheet to a DataFrame
+            df = pd.DataFrame(sheet.values)
             print("yes")
             # Extract data to generate dff2
             attribute_list= ['Assembly Location',
